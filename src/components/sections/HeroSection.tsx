@@ -21,7 +21,7 @@ function ParticleSystem() {
   }, []);
 
   useFrame((state) => {
-    const t = state.clock.getElapsedTime();
+    const t = state.clock.elapsedTime;
     ref.current.rotation.y = t * 0.05;
     ref.current.rotation.x = Math.sin(t * 0.05) * 0.1;
   });
