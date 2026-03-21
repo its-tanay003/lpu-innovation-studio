@@ -1,0 +1,63 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Stores user information and innovation score.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "role": { "type": "string", "enum": ["student", "club_lead", "mentor", "admin"] },
+        "branch": { "type": "string" },
+        "year": { "type": "integer" },
+        "innovationScore": { "type": "integer" },
+        "skills": { "type": "array", "items": { "type": "string" } },
+        "avatarUrl": { "type": "string" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "Lab": {
+      "title": "Lab",
+      "description": "Information about specialized labs.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "status": { "type": "string", "enum": ["open", "busy", "maintenance"] },
+        "equipment": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["id", "name", "status"]
+    },
+    "Project": {
+      "title": "Project",
+      "description": "Student innovation projects.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "authorUid": { "type": "string" },
+        "status": { "type": "string", "enum": ["draft", "review", "approved", "featured"] },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "votes": { "type": "integer" }
+      },
+      "required": ["id", "title", "authorUid", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile collection."
+    },
+    "/labs/{labId}": {
+      "schema": "Lab",
+      "description": "Labs collection."
+    },
+    "/projects/{projectId}": {
+      "schema": "Project",
+      "description": "Projects collection."
+    }
+  }
+}

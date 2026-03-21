@@ -1,0 +1,5 @@
+{
+  "name": "LPU Innovation Studio",
+  "description": "The official 50,000 sq ft technology and engineering facility at Lovely Professional University. From theory to hands-on. From idea to national competition.",
+  "requestFramePermissions": ["camera", "microphone", "geolocation"]
+}
