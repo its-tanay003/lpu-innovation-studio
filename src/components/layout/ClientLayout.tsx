@@ -7,6 +7,7 @@ import { Footer } from '@/components/layout/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import { ChatbotOrb } from '@/components/ui/ChatbotOrb';
+import { SessionProvider } from "next-auth/react";
 
 interface ClientLayoutProps {
   children: React.ReactNode;
@@ -40,23 +41,25 @@ export function ClientLayout({ children }: ClientLayoutProps) {
   }, []);
 
   return (
-    <div className="min-h-screen bg-bg-base text-white selection:bg-accent-cyan selection:text-bg-base">
-      <Navbar />
-      <main className="pt-20">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={pathname}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4, ease: 'easeOut' }}
-          >
-            {children}
-          </motion.div>
-        </AnimatePresence>
-      </main>
-      <ChatbotOrb />
-      <Footer />
-    </div>
+    <SessionProvider>
+      <div className="min-h-screen bg-bg-base text-white selection:bg-accent-cyan selection:text-bg-base">
+        <Navbar />
+        <main className="pt-20">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={pathname}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4, ease: 'easeOut' }}
+            >
+              {children}
+            </motion.div>
+          </AnimatePresence>
+        </main>
+        <ChatbotOrb />
+        <Footer />
+      </div>
+    </SessionProvider>
   );
 }

@@ -38,15 +38,22 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  role          String    @default("user")
-  accounts      Account[]
-  sessions      Session[]
-  projects      Project[]
+  id               String    @id @default(cuid())
+  name             String?
+  email            String?   @unique
+  emailVerified    DateTime?
+  image            String?
+  password         String?
+  role             String    @default("student")
+  lpuId            String?   @unique
+  branch           String?
+  year             String?
+  bio              String?
+  is_active        Boolean   @default(true)
+  innovation_score Int       @default(0)
+  accounts         Account[]
+  sessions         Session[]
+  projects         Project[]
 }
 
 model VerificationToken {
