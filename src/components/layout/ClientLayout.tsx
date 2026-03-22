@@ -1,18 +1,19 @@
+'use client';
+
 import React, { useEffect } from 'react';
 import Lenis from 'lenis';
-import { Navbar } from './Navbar';
-import { Footer } from './Footer';
+import { Navbar } from '@/components/layout/Navbar';
+import { Footer } from '@/components/layout/Footer';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useLocation } from 'react-router-dom';
+import { usePathname } from 'next/navigation';
+import { ChatbotOrb } from '@/components/ui/ChatbotOrb';
 
-import { ChatbotOrb } from '../ui/ChatbotOrb';
-
-interface LayoutProps {
+interface ClientLayoutProps {
   children: React.ReactNode;
 }
 
-export const Layout: React.FC<LayoutProps> = ({ children }) => {
-  const location = useLocation();
+export function ClientLayout({ children }: ClientLayoutProps) {
+  const pathname = usePathname();
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -44,7 +45,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       <main className="pt-20">
         <AnimatePresence mode="wait">
           <motion.div
-            key={location.pathname}
+            key={pathname}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -58,4 +59,4 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
       <Footer />
     </div>
   );
-};
+}

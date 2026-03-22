@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Zap, Github, Twitter, Linkedin, Instagram, Mail, MapPin, Phone } from 'lucide-react';
 
 export const Footer = () => {
@@ -9,7 +9,7 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand Column */}
           <div className="space-y-6">
-            <Link to="/" className="flex items-center space-x-2">
+            <Link href="/" className="flex items-center space-x-2">
               <Zap className="w-8 h-8 text-accent-cyan fill-accent-cyan" />
               <div className="flex flex-col">
                 <span className="font-orbitron font-black text-xl leading-none text-white">INNOVATION</span>
@@ -41,7 +41,7 @@ export const Footer = () => {
             <ul className="space-y-4">
               {['Home', 'Labs', 'Projects', 'Clubs', 'Achievements'].map((item) => (
                 <li key={item}>
-                  <Link to={`/${item.toLowerCase()}`} className="text-white/50 hover:text-accent-cyan text-sm transition-colors">
+                  <Link href={`/${item.toLowerCase()}`} className="text-white/50 hover:text-accent-cyan text-sm transition-colors">
                     {item}
                   </Link>
                 </li>

@@ -1,20 +1,22 @@
+'use client';
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Button } from '../components/ui/Button';
+import { Button } from '@/components/ui/Button';
 import { Zap, Mail, Lock, ArrowRight, Chrome } from 'lucide-react';
-import { auth, googleProvider } from '../lib/firebase';
+import { auth, googleProvider } from '@/lib/firebase';
 import { signInWithPopup } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 
-export const Login = () => {
+export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const handleGoogleLogin = async () => {
     setIsLoading(true);
     try {
       await signInWithPopup(auth, googleProvider);
-      navigate('/dashboard');
+      router.push('/dashboard');
     } catch (error) {
       console.error('Login failed:', error);
     } finally {
@@ -23,7 +25,7 @@ export const Login = () => {
   };
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center px-4 py-12 circuit-bg">
+    <div className="min-h-[80vh] flex items-center justify-center px-4 py-12 bg-circuit">
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -100,4 +102,4 @@ export const Login = () => {
       </motion.div>
     </div>
   );
-};
+}

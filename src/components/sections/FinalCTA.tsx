@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '../ui/Button';
 import { Rocket, ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 export const FinalCTA = () => {
   return (
@@ -39,12 +39,12 @@ export const FinalCTA = () => {
           viewport={{ once: true }}
           className="flex flex-wrap items-center justify-center gap-6"
         >
-          <Link to="/register">
+          <Link href="/register">
             <Button size="lg" className="px-12 py-5 text-xl" rightIcon={<ArrowRight className="w-6 h-6" />}>
               APPLY NOW
             </Button>
           </Link>
-          <Link to="/labs">
+          <Link href="/labs">
             <Button variant="outline" size="lg" className="px-12 py-5 text-xl">
               EXPLORE STUDIO
             </Button>

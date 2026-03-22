@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Zap, User, LogOut } from 'lucide-react';
 import { Button } from '../ui/Button';
@@ -11,7 +12,7 @@ export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [user] = useAuthState(auth);
-  const location = useLocation();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,7 +37,7 @@ export const Navbar = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
-        <Link to="/" className="flex items-center space-x-2">
+        <Link href="/" className="flex items-center space-x-2">
           <Zap className="w-8 h-8 text-accent-cyan fill-accent-cyan" />
           <div className="flex flex-col">
             <span className="font-orbitron font-black text-xl leading-none text-white">INNOVATION</span>
@@ -49,9 +50,9 @@ export const Navbar = () => {
           {navLinks.map((link) => (
             <Link
               key={link.name}
-              to={link.path}
+              href={link.path}
               className={`font-orbitron text-xs font-bold tracking-widest hover:text-accent-cyan transition-colors ${
-                location.pathname === link.path ? 'text-accent-cyan' : 'text-white/70'
+                pathname === link.path ? 'text-accent-cyan' : 'text-white/70'
               }`}
             >
               {link.name.toUpperCase()}
@@ -60,7 +61,7 @@ export const Navbar = () => {
           
           {user ? (
             <div className="flex items-center space-x-4">
-              <Link to="/dashboard" className="flex items-center space-x-2 group">
+              <Link href="/dashboard" className="flex items-center space-x-2 group">
                 <div className="w-8 h-8 rounded-full bg-accent-purple flex items-center justify-center border border-white/20 overflow-hidden">
                   {user.photoURL ? (
                     <img src={user.photoURL} alt={user.displayName || ''} className="w-full h-full object-cover" />
@@ -74,7 +75,7 @@ export const Navbar = () => {
               </button>
             </div>
           ) : (
-            <Link to="/login">
+            <Link href="/login">
               <Button size="sm">LOGIN</Button>
             </Link>
           )}
@@ -100,7 +101,7 @@ export const Navbar = () => {
             {navLinks.map((link) => (
               <Link
                 key={link.name}
-                to={link.path}
+                href={link.path}
                 onClick={() => setIsOpen(false)}
                 className="font-orbitron text-2xl font-black tracking-tighter text-white hover:text-accent-cyan"
               >
@@ -108,11 +109,11 @@ export const Navbar = () => {
               </Link>
             ))}
             {user ? (
-              <Link to="/dashboard" onClick={() => setIsOpen(false)}>
+              <Link href="/dashboard" onClick={() => setIsOpen(false)}>
                 <Button variant="secondary">DASHBOARD</Button>
               </Link>
             ) : (
-              <Link to="/login" onClick={() => setIsOpen(false)}>
+              <Link href="/login" onClick={() => setIsOpen(false)}>
                 <Button>LOGIN</Button>
               </Link>
             )}

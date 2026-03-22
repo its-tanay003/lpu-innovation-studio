@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '../ui/Button';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { 
   Lightbulb, 
   Cpu, 
@@ -40,7 +40,7 @@ export const LabsExplorer = () => {
             Our specialized facilities are designed to support every stage of the engineering lifecycle, from initial ideation to precision manufacturing.
           </p>
         </div>
-        <Link to="/labs">
+        <Link href="/labs">
           <Button variant="outline" rightIcon={<ArrowRight className="w-4 h-4" />}>
             VIEW ALL FACILITIES
           </Button>

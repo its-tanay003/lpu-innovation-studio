@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Trophy, Award, Star, ArrowRight } from 'lucide-react';
 import { Button } from '../ui/Button';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const achievements = [
   { title: 'SIH Nodal Centre', desc: '6 Consecutive Years (2019-2025)', icon: Star, color: 'cyan' },
@@ -23,7 +23,7 @@ export const AchievementsWall = () => {
             Celebrating the milestones that define our legacy of innovation and excellence on the global stage.
           </p>
         </div>
-        <Link to="/achievements">
+        <Link href="/achievements">
           <Button variant="ghost" className="text-accent-purple" rightIcon={<ArrowRight className="w-4 h-4" />}>
             VIEW ALL ACHIEVEMENTS
           </Button>

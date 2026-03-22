@@ -1,6 +1,8 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Button } from '../components/ui/Button';
+import { Button } from '@/components/ui/Button';
 import { 
   Lightbulb, 
   Cpu, 
@@ -80,7 +82,7 @@ const labs = [
   },
 ];
 
-export const Labs = () => {
+export default function LabsPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
       <div className="text-center space-y-4 max-w-3xl mx-auto">
@@ -131,4 +133,4 @@ export const Labs = () => {
       </div>
     </div>
   );
-};
+}

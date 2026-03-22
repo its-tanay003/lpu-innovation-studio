@@ -5,9 +5,9 @@ let ai: GoogleGenAI | null = null;
 
 const getAI = () => {
   if (!ai) {
-    const apiKey = process.env.GEMINI_API_KEY;
+    const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
     if (!apiKey) {
-      throw new Error("GEMINI_API_KEY is not configured");
+      throw new Error("NEXT_PUBLIC_GEMINI_API_KEY is not configured");
     }
     ai = new GoogleGenAI({ apiKey });
   }

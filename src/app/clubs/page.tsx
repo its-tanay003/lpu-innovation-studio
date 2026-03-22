@@ -1,7 +1,9 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Button } from '../components/ui/Button';
-import { Users, Shield, Code, Globe, Swords, Lightbulb, Trophy, ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui/Button';
+import { Shield, Code, Globe, Swords, Lightbulb, Trophy, ArrowRight } from 'lucide-react';
 
 const clubs = [
   {
@@ -54,7 +56,7 @@ const clubs = [
   },
 ];
 
-export const Clubs = () => {
+export default function ClubsPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
       <div className="text-center space-y-4 max-w-3xl mx-auto">
@@ -115,4 +117,4 @@ export const Clubs = () => {
       </div>
     </div>
   );
-};
+}

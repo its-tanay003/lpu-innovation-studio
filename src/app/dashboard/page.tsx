@@ -1,9 +1,11 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Button } from '../components/ui/Button';
-import { auth } from '../lib/firebase';
+import { Button } from '@/components/ui/Button';
+import { auth } from '@/lib/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Navigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { 
   Zap, 
   Trophy, 
@@ -18,11 +20,23 @@ import {
   Shield
 } from 'lucide-react';
 
-export const Dashboard = () => {
+export default function DashboardPage() {
   const [user, loading] = useAuthState(auth);
+  const router = useRouter();
 
-  if (loading) return null;
-  if (!user) return <Navigate to="/login" />;
+  useEffect(() => {
+    if (!loading && !user) {
+      router.push('/login');
+    }
+  }, [user, loading, router]);
+
+  if (loading) return (
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="w-12 h-12 border-4 border-accent-cyan border-t-transparent rounded-full animate-spin" />
+    </div>
+  );
+  
+  if (!user) return null;
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8">
@@ -82,7 +96,7 @@ export const Dashboard = () => {
                     cy="80"
                     r="70"
                     fill="none"
-                    stroke="var(--color-accent-cyan)"
+                    stroke="#00e5ff"
                     strokeWidth="12"
                     strokeLinecap="round"
                     className="drop-shadow-[0_0_8px_rgba(0,229,255,0.5)]"
@@ -183,4 +197,4 @@ export const Dashboard = () => {
       </div>
     </div>
   );
-};
+}

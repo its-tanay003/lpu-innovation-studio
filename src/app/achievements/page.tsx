@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Trophy, Award, FileText, Star, TrendingUp, Globe } from 'lucide-react';
@@ -53,7 +55,7 @@ const achievements = [
   },
 ];
 
-export const Achievements = () => {
+export default function AchievementsPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
       <div className="text-center space-y-4 max-w-3xl mx-auto">
@@ -97,4 +99,4 @@ export const Achievements = () => {
       </div>
     </div>
   );
-};
+}

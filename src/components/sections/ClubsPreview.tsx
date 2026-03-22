@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Shield, Globe, Code, ArrowRight } from 'lucide-react';
 import { Button } from '../ui/Button';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const clubs = [
   { name: 'REDDIX', icon: Shield, color: 'cyan', desc: 'World Robotics Champions' },
@@ -39,7 +39,7 @@ export const ClubsPreview = () => {
               <h3 className="font-orbitron text-xl font-bold text-white">{club.name}</h3>
               <p className="text-white/40 text-sm font-exo2">{club.desc}</p>
             </div>
-            <Link to="/clubs">
+            <Link href="/clubs">
               <Button variant="ghost" size="sm" className="text-accent-orange" rightIcon={<ArrowRight className="w-4 h-4" />}>
                 LEARN MORE
               </Button>
